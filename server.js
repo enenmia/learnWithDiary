@@ -4,6 +4,8 @@ const axios = require('axios');
 const cors = require('cors'); // 引入cors
 const app = express();
 
+const { Translate } = require('@google-cloud/translate').v2;
+
 app.use(cors()); // 使用cors中间件
 app.use(express.json());
 
@@ -11,7 +13,7 @@ app.use(express.json());
 
 app.use(express.json());
 
-
+const translate = new Translate({ key: 'YOUR_OWN_GOOGLE_API' });
 
 app.post('/process-text', async (req, res) => {
     const userText = req.body.text;
@@ -24,7 +26,7 @@ app.post('/process-text', async (req, res) => {
             temperature: 0.5
         }, {
             headers: {
-                'Authorization': `Bearer YOUR_OWN_GPT_API_KEY`,
+                'Authorization': `Bearer YOUR_OWN_GPT_API`,
                 'Content-Type': 'application/json'
             }
         });
@@ -35,6 +37,23 @@ app.post('/process-text', async (req, res) => {
         res.status(500).json({ error: error.message });
     }
 });
+app.post('/translate', async (req, res) => {
+    const { text } = req.body;
+    const source = 'nl';
+    const target = 'en';
+
+    try {
+        let [translations] = await translate.translate(text, { from: source, to: target });
+        translations = Array.isArray(translations) ? translations : [translations];
+        const translatedTextLowercase = translations[0].toLowerCase();
+        res.json({ translatedText: translatedTextLowercase });
+    } catch (error) {
+        console.error('翻译请求失败:', error.message);
+        res.status(500).json({ error: '翻译请求失败', details: error.message });
+    }
+});
+
+
 
 const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => {
