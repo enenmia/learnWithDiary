@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Card from './Card';
+
 function App() {
   const [originalText, setOriginalText] = useState('');
   const [correctedText, setCorrectedText] = useState('');
@@ -11,6 +12,10 @@ function App() {
   const [wordCount, setWordCount] = useState({});
   const [recentlyUpdatedWords, setRecentlyUpdatedWords] = useState(new Set());
   const [translations, setTranslations] = useState({});
+  const [hoveredWord, setHoveredWord] = useState(null);
+  const [learnedList, setLearnedList] = useState(new Set());
+
+  
 
   const getTranslation = async (word) => {
     try {
@@ -29,7 +34,11 @@ function App() {
     setNewWordsToday(new Set());
     setYouLearnedNewWords(new Set());
   }, [originalText]);
-
+  
+  useEffect(() => {
+    setLearnedList(prevList => new Set([...prevList, ...youLearnedNewWords]));
+  }, [youLearnedNewWords]); // 注意，这里的依赖项是 youLearnedNewWords
+  
 
   const processText = async () => {
     // 发送请求到后端的代码...
@@ -85,55 +94,74 @@ function App() {
     } catch (error) {
       console.error("Error processing text:", error);
     }
+
+    
+    
   };
   
 
 
   
   return (
-    <div>
-      <h2>Language Learning Diary</h2>
+    <div className='main'>
+      <div className='left'>
+      <h2 className='websiteTtl'>Diary Dutch</h2>
+      <div className='leftTop'>
       <textarea
+      className='inputArea'
         value={originalText}
         onChange={(e) => setOriginalText(e.target.value)}
         placeholder="Type your original text here"
       />
-      <button onClick={processText}>Process Text</button>
-      <div>
-        <h3>Processed Text:</h3>
-        <p>{correctedText}</p>
+      <div className='btn'>
+      <button onClick={processText}>Process</button>
+      </div>
+      <div className='correct'>
+      <p >{correctedText}</p>
+      </div>
       </div>
     <div>
-  <h3>New Words Today:</h3>
+      <div className='glossary'>
+  <h3>Glossary  &  meaning</h3>
   <ul>
     {Array.from(newWordsToday).map(word => (
       <li key={word}>{word} - {translations[word]}</li>
     ))}
   </ul>
+  </div>
 </div>
-
-      <div>
-  <h3>Try to Use These Words:</h3>
+</div>
+<div className='right'>
+        <div>
+          <h3 className='righth3'>Try to Use These Words</h3>
+          <ul>
+            {Array.from(tryToUseWords)
+              .sort((a, b) => (3 - (knownWords[b] || 0)) - (3 - (knownWords[a] || 0)))
+              .map(word => (
+                <div key={word}
+                  className="wordContainer"
+                  onMouseEnter={() => setHoveredWord(word)}
+                  onMouseLeave={() => setHoveredWord(null)}
+                >
+                  <Card key={word} word={word} count={3 - (knownWords[word] || 0)} />
+                  {hoveredWord === word && <div className="translation">{translations[word]}</div>}
+                </div>
+              ))
+            }
+          </ul>
+        </div>
+        <div>
+  <h3 id="learnedWord"className='righth3'>Words you've got</h3>
   <ul>
-  {Array.from(tryToUseWords)
-    .sort((a, b) => (3 - (knownWords[b] || 0)) - (3 - (knownWords[a] || 0)))
-    .map(word => (
-      <Card key={word} word={word} count={3 - (knownWords[word] || 0)} />
-    ))
-  }
-</ul>
-
+    {Array.from(learnedList).map(word => (
+      <li className="wordContainer" id="learned"key={word}>{word}</li>
+    ))}
+  </ul>
 </div>
 
-
-      <div>
-        <h3>You Learned Something New:</h3>
-        <ul>
-          {Array.from(youLearnedNewWords).map(word => (
-            <li key={word}>{word}</li>
-          ))}
-        </ul>
       </div>
+    
+
     </div>
   );
 }

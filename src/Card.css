@@ -1,9 +1,13 @@
-.card {
+/* .word-container {
     width: 150px;
     padding: 5px;
     margin: 5px;
     border: 1px solid black;
     border-radius: 8px;
     align-content: center;
+  }
+   */
+   .cardStyle {
+    background-color: rgba(255, 226, 151, 1) !important; /* 颜色为 #FFE297 */
   }
   

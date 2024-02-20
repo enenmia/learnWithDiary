@@ -5,9 +5,168 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  color:#520D0D;
+  
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+.main{
+  display: flex;
+  height: 100vh;
+  margin:50px;
+  font-family: "Montserrat", sans-serif;;
+  
+}
+.inputArea, .correct{
+  background-color: white;
+  border: none;
+  border-radius: 5px; /* 设置边框圆角 */
+  padding: 8px; /* 设置内边距 */
+  font-size: 16px; /* 设置字体大小 */
+  width: 600px; /* 设置宽度 */
+  height: 200px;
+  margin: 30px 100px;
+
+}
+button:hover{
+  color:#FDFAF4;
+background-color: #BEACAC;
+padding: 10px 20px;
+border:none;
+font-size: 18px;
+border-radius: 20px;
+border:#BEACAC solid 1px;
+  
+
+}
+.inputArea:focus {
+
+outline-color: #BEACAC;
+
+}
+.left{
+  display: block;
+  background-color: #FDFAF4;
+  margin: -50px;
+}
+button{
+color:#520D0D;
+background-color: white;
+padding: 10px 20px;
+border:#520D0D solid 1px;
+font-size: 18px;
+border-radius: 20px;
+
+}
+
+.leftTop {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* 竖直居中 */
+}
+
+.btn {
+  margin-top: 10px; /* 调整按钮和输入框之间的距离 */
+  display: flex;
+  justify-content: center; /* 水平居中 */
+}
+.glossary h3 {
+  text-align: center; /* 将标题居中 */
+}
+.glossary ul {
+  list-style: none; /* 去除列表项默认样式 */
+  padding: 0; /* 去除列表项的内边距 */
+  text-align: center; /* 将列表项内容居中 */
+  margin-left:290px;
+}
+
+.glossary li {
+  display: flex; /* 使用 Flexbox 布局 */
+  align-items: center; /* 在交叉轴上居中对齐 */
+  margin-bottom: 10px; /* 可选：添加一些底部边距 */
+}
+
+.glossary li::before {
+  content: '\2022'; /* 设置项目符号为圆点 */
+  margin-right: 5px; /* 可选：添加一些右边距 */
+}
+.wordContainer {
+  display: flex;
+  align-items: center; /* 垂直居中对齐 */
+  width: 150px;
+  padding: 0px 20px;
+  margin: 5px;
+  border: none;
+  border-radius: 20px;
+  align-content: center;
+  background-color: #FFE297;
+  margin-left:-30px;
+}
+
+.word {
+  margin-right: 5px; /* 可选：为了单词和翻译之间添加一些间距 */
+}
+
+.translation {
+  font-style: italic; /* 可选：斜体样式 */
+}
+
+
+
+
+
+.inputArea::placeholder {
+  color: #BEACAC; /* 更改 placeholder 的颜色 */
+}
+
+.left,
+.right {
+   /* max-height: 100vh; */
+  flex: 1; /* 让左右两个区域平分父容器的宽度 */
+  overflow-y: auto; /* 添加垂直滚动条 */
+}
+
+.right {
+  display: grid;
+  place-items: center; /* 水平和垂直居中 */
+  margin-left: 100px;
+  padding-top:-100px;
+}
+.righth3{
+  font-size: 18px;
+  margin-top: 0px;
+}
+#learned{
+  margin-top:0px;
+  padding: 15px 20px;
+  background-color: #E7FCC5;
+}
+#learnedWords{
+  background-color:#E7FCC5;
+
+}
+.translation{
+  padding-left: 10px;
+}
+.websiteTtl{
+  padding-left: 30px;
+  padding-top: 10px;
+  font-family: "Inconsolata", monospace;
+}
+#learnedWord{
+  margin-left: 22px;
+
+}
+.left{
+  padding-bottom: 30px;
+}
+.login{
+
+  position: absolute;
+  top:0;
+  right:0;
 }
