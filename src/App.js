@@ -133,8 +133,8 @@ function App() {
 </div>
 <div className='right'>
         <div>
-          <h3 className='righth3'>Try to Use These Words</h3>
-          <ul>
+          <h3 id="trytouse"className='righth3'>Try to Use These Words</h3>
+          <ul id="tryuseul">
             {Array.from(tryToUseWords)
               .sort((a, b) => (3 - (knownWords[b] || 0)) - (3 - (knownWords[a] || 0)))
               .map(word => (
@@ -151,7 +151,7 @@ function App() {
           </ul>
         </div>
         <div>
-  <h3 id="learnedWord"className='righth3'>Words you've got</h3>
+  <h3 id="learnedWord"className='righth3'>Words you've got{learnedList.length}</h3>
   <ul>
     {Array.from(learnedList).map(word => (
       <li className="wordContainer" id="learned"key={word}>{word}</li>

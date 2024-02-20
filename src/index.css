@@ -30,6 +30,8 @@ code {
   width: 600px; /* 设置宽度 */
   height: 200px;
   margin: 30px 100px;
+  font-family: "Montserrat", sans-serif;
+  color: #520D0D;
 
 }
 button:hover{
@@ -67,6 +69,7 @@ border-radius: 20px;
   display: flex;
   flex-direction: column;
   align-items: center; /* 竖直居中 */
+
 }
 
 .btn {
@@ -81,7 +84,7 @@ border-radius: 20px;
   list-style: none; /* 去除列表项默认样式 */
   padding: 0; /* 去除列表项的内边距 */
   text-align: center; /* 将列表项内容居中 */
-  margin-left:290px;
+  margin-left:160px;
 }
 
 .glossary li {
@@ -103,7 +106,7 @@ border-radius: 20px;
   border: none;
   border-radius: 20px;
   align-content: center;
-  background-color: #FFE297;
+  background-color: #FFF597;
   margin-left:-30px;
 }
 
@@ -153,20 +156,46 @@ border-radius: 20px;
   padding-left: 10px;
 }
 .websiteTtl{
-  padding-left: 30px;
-  padding-top: 10px;
+font-size: 24px;
+font-weight: 800;
+  padding-top: 18px;
   font-family: "Inconsolata", monospace;
+  margin-left: -160px;
 }
 #learnedWord{
   margin-left: 22px;
+  margin-top: 30px ;
 
 }
 .left{
   padding-bottom: 30px;
+  padding-left: 200px;
+  padding-right: 200px;
 }
 .login{
 
   position: absolute;
   top:0;
   right:0;
+}
+#trytouse{
+  position: absolute;
+  top:50px;
+  right:170px;
+  background-color: white;
+  padding-bottom: 20px;
+}
+.correct{
+padding-left: 20px;
+  padding-top:0;
+}
+.inputArea{
+  width: 600px;
+padding-top: 15px;
+padding-left: 20px;
+}
+#tryuseul{
+
+  margin-top: 50px;
+
 }
